@@ -53,7 +53,11 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
         this.setState({value: this.state.value * 10 + n});
     }
 
-    handler(id: number) {
+    private enter() {
+        this.props.onEnter(this.state.value);
+    }
+
+    private handler(id: number) {
         switch (id) {
             case 0:
                 this.clear();
@@ -74,6 +78,9 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
                 break;
             case 12:
                 this.backspace();
+                break;
+            case 14:
+                this.enter();
                 break;
         }
     }
