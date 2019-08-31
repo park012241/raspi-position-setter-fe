@@ -6,6 +6,7 @@ import {Backspace, Clear, Done} from '@material-ui/icons';
 
 interface IKeypadProp {
     onEnter: (value: number) => void,
+    onValueEdited?: (value: number) => void,
 }
 
 interface IKeypadState {
@@ -45,12 +46,15 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
 
     private backspace() {
         console.log('Backspace');
-        this.setState({value: Math.floor(this.state.value / 10)});
+        this.setState((state)=>({value: Math.floor(state.value / 10)}));
     }
 
     private number(n: number) {
         console.log(`Number: ${n}`);
-        this.setState({value: this.state.value * 10 + n});
+        this.setState((state)=>({value: state.value * 10 + n}));
+        if (this.props.onValueEdited) {
+            this.props.onValueEdited(this.state.value);
+        }
     }
 
     private enter() {
@@ -85,10 +89,10 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
         }
     }
 
-    render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+    render() {
         return (
             <div className={'keypad'}>
-                <div className={'keypad-value'}>{this.state.value}</div>
+                <div className={'keypad-value'}>{this.state.value !== 0 ? this.state.value : 0}</div>
                 <div className={'keypad-wrap'}>
                     {this.text.map((e, i) => {
                         return (

@@ -18,10 +18,14 @@ class App extends React.Component<IAppProp, IAppState> {
         console.log(`Value: ${value}`);
     }
 
+    private resolveHandler(value: number) {
+        console.log(`Resolved: ${value}`);
+    }
+
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
             <div className="App">
-                <Keypad onEnter={this.valueHandler}/>
+                <Keypad onEnter={this.resolveHandler} onValueEdited={this.valueHandler}/>
             </div>
         );
     }
