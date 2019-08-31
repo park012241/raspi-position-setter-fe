@@ -1,0 +1,8 @@
+.MiddleText {
+    flex: auto;
+    display: flex;
+}
+
+.MiddleTextChild {
+    margin: auto;
+}

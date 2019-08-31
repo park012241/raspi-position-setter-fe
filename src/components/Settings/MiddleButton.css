@@ -1,0 +1,8 @@
+.MiddleButton {
+    flex: auto;
+    display: flex;
+}
+
+.MiddleButtonChild {
+    margin: auto;
+}

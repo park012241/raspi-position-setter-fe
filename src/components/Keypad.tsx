@@ -91,12 +91,12 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
 
     render() {
         return (
-            <div className={'keypad'}>
-                <div className={'keypad-value'}>{this.state.value !== 0 ? this.state.value : 0}</div>
-                <div className={'keypad-wrap'}>
+            <div className={'Keypad'}>
+                <div className={'KeypadValue'}>{this.state.value !== 0 ? this.state.value : 0}</div>
+                <div className={'KeypadWrap'}>
                     {this.text.map((e, i) => {
                         return (
-                            <Button raised className={'keypad-key'} style={{
+                            <Button raised className={'KeypadKey'} style={{
                                 gridArea: `${Math.floor((i / 3) + 2).toString()} / ${i % 3 + 1}`,
                             }} onClick={() => {
                                 this.handler(i);

@@ -1,0 +1,10 @@
+.Settings {
+    margin: 5px;
+    display: flex;
+}
+
+.Configs {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+}
