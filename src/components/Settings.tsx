@@ -3,24 +3,21 @@ import React from 'react';
 import './Settings.css';
 
 interface ISettingsProp {
+    target?: keyof ISettingsState;
+    onConfButton: (target: string) => void,
+    config: ISettingsState;
 }
 
 interface ISettingsState {
-    target: keyof ISettingsState;
     speed: number;
     offset: number;
 }
 
-export class Settings extends React.Component<ISettingsProp, ISettingsState> {
+export class Settings extends React.Component<ISettingsProp> {
     private readonly settings: IConfigProp<ISettingsState>[];
 
     constructor(props: ISettingsProp) {
         super(props);
-        this.state = {
-            target: 'target',
-            speed: 0,
-            offset: 0,
-        };
         this.settings = [
             {
                 name: {
@@ -45,9 +42,7 @@ export class Settings extends React.Component<ISettingsProp, ISettingsState> {
     }
 
     private configButtonHandler(name: keyof ISettingsState) {
-        this.setState({
-            target: name,
-        });
+        this.props.onConfButton(name);
     }
 
     render() {
@@ -56,11 +51,17 @@ export class Settings extends React.Component<ISettingsProp, ISettingsState> {
                 <div className={'Configs'}>
                     {this.settings.map((e) => {
                         return (
-                            <Config value={this.state[e.name.origin]} unit={e.unit} name={{
-                                origin: e.name.origin,
-                                userFriend: e.name.userFriend,
-                            }} highlighted={this.state.target === e.name.origin}
-                                    onClick={this.configButtonHandler.bind(this)}/>
+                            <Config
+                                key={e.name.origin}
+                                value={this.props.config[e.name.origin] || 0}
+                                unit={e.unit}
+                                name={{
+                                    origin: e.name.origin,
+                                    userFriend: e.name.userFriend,
+                                }}
+                                highlighted={this.props.target === e.name.origin}
+                                onClick={this.configButtonHandler.bind(this)}
+                            />
                         );
                     })}
                 </div>

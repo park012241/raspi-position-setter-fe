@@ -46,19 +46,23 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
 
     private backspace() {
         console.log('Backspace');
-        this.setState((state)=>({value: Math.floor(state.value / 10)}));
+        this.setState((state) => ({value: Math.floor(state.value / 10)}));
     }
 
     private number(n: number) {
         console.log(`Number: ${n}`);
-        this.setState((state)=>({value: state.value * 10 + n}));
-        if (this.props.onValueEdited) {
-            this.props.onValueEdited(this.state.value);
-        }
+        this.setState((state) => {
+            const value = state.value * 10 + n;
+            if (this.props.onValueEdited) {
+                this.props.onValueEdited(value);
+            }
+            return {value};
+        });
     }
 
     private enter() {
         this.props.onEnter(this.state.value);
+        this.clear();
     }
 
     private handler(id: number) {
@@ -97,7 +101,7 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
                     {this.text.map((e, i) => {
                         return (
                             <Button raised className={'KeypadKey'} style={{
-                                gridArea: `${Math.floor((i / 3) + 2).toString()} / ${i % 3 + 1}`,
+                                gridArea: `${Math.floor((i / 3) + 1).toString()} / ${i % 3 + 1}`,
                             }} onClick={() => {
                                 this.handler(i);
                             }} key={i}>{e}</Button>

@@ -1,19 +1,22 @@
 .Keypad {
     margin: 5px;
-}
-
-.KeypadWrap {
-    display: grid;
-    grid-gap: 5px;
-    grid-area: 5 / 3;
-    font-size: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .KeypadValue {
-    grid-area: 1 / 1 / auto / auto;
     margin: 10px;
     font-size: 36px;
 }
 
+.KeypadWrap {
+    flex: auto;
+    display: grid;
+    grid-gap: 5px;
+    font-size: 20px;
+}
+
 .KeypadKey {
+    height: 100%;
+    font-size: 20px;
 }

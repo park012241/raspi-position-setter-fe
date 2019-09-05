@@ -17,9 +17,9 @@ export interface IConfigProp<T> {
 export function Config<T>(props: IConfigProp<T>) {
     return (
         <div className={'Config'} style={{
-            background: props.highlighted ? 'Highlight' : 'none',
+            background: props.highlighted ? '#bbe1ff' : 'none',
         }}>
-            <MiddleText text={props.name.userFriend}/>
+            <MiddleText text={props.name.userFriend} width={'8em'}/>
             <MiddleText text={`${props.value}${props.unit}`}/>
             <MiddleButton text={'설정하기'} onClick={() => {
                 props.onClick(props.name.origin);
