@@ -42,14 +42,17 @@ class App extends React.Component<IAppProp, IAppState> {
                 }),
             });
         }
-        console.log(`Value: ${value}`);
     }
 
     private resolveHandler(value: number) {
-        this.setState({
-            target: undefined,
-        });
-        console.log(`Resolved: ${value}`);
+        if (this.state.target) {
+            console.log(`Resolved ${this.state.target} : ${value}`);
+            this.setState({
+                target: undefined,
+            });
+        } else {
+            console.log('Resolve Ignored');
+        }
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {

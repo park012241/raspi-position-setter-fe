@@ -40,7 +40,6 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
     }
 
     private clear() {
-        console.log('Clear');
         this.setState({value: 0});
     }
 
@@ -50,7 +49,6 @@ export class Keypad extends React.Component<IKeypadProp, IKeypadState> {
     }
 
     private number(n: number) {
-        console.log(`Number: ${n}`);
         this.setState((state) => {
             const value = state.value * 10 + n;
             if (this.props.onValueEdited) {
